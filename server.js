@@ -68,7 +68,7 @@ app.post("/api/restaurants", (req, res) => {
 
 // Updating restaurant with req.body and the ID
 app.put("/api/restaurants/:_id", (req, res) => {
-    if(!req.body) res.status(500).json({error: "Invalid body"})
+    if(Object.keys(req.body).length === 0) res.status(500).json({error: "Invalid body"})
     else {
         db.updateRestaurantById(req.body, req.params._id)
         .then(() => { res.status(201).json({message: `Successfuly updated restaurant ${req.params._id}`}) })
