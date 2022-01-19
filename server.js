@@ -24,7 +24,7 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true })); 
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8080; 
 
 db.initialize(MONGO_CONNECT_STRING)
 .then(() => {
@@ -45,7 +45,7 @@ app.get("/api/restaurants", (req, res) => {
     else {
         db.getAllRestaurants(req.query.page, req.query.perPage, req.query.borough)
         .then((data) => {
-            if(data.length === 0) res.status(500).json({message: "No data returned"});
+            if(data.length === 0) res.status(204).json({message: "No data returned"});
             else res.status(201).json(data);
         })
         .catch((err) => { res.status(500).json({error: err}) })
@@ -61,9 +61,12 @@ app.get("/api/restaurants/:_id", (req, res) => {
 
 // Adding a new restaurant from req.body
 app.post("/api/restaurants", (req, res) => {
-    db.addNewRestaurant(req.body)
-    .then((data) => { res.status(201).json(data) })
-    .catch((err) => { res.status(500).json({error: err}) })
+    if(Object.keys(req.body).length === 0) res.status(500).json({error: "Invalid body"})
+    else {
+        db.addNewRestaurant(req.body)
+        .then((data) => { res.status(201).json(data) })
+        .catch((err) => { res.status(500).json({error: err}) })
+    }
 });
 
 // Updating restaurant with req.body and the ID
