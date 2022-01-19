@@ -68,6 +68,7 @@ app.post("/api/restaurants", (req, res) => {
 
 // Updating restaurant with req.body and the ID
 app.put("/api/restaurants/:_id", (req, res) => {
+    console.log(req.body);
     db.updateRestaurantById(req.body, req.params._id)
     .then(() => { res.status(201).json({message: `Successfuly updated restaurant ${req.params._id}`}) })
     .catch((err) => { res.status(500).json({error: err}) })
