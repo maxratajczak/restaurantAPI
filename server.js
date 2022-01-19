@@ -4,7 +4,7 @@
 * No part of this assignment has been copied manually or electronically from any other source
 * (including web sites) or distributed to other students.
 *
-* Name: Max Ratajczak Student ID: 100153204 Date: Janurary 19, 2022
+* Name: Max Ratajczak Student ID: 100153204 Date: January 19, 2022
 * Heroku Link: https://max-web422-assignment1.herokuapp.com/ 
 *
 ********************************************************************************/ 
