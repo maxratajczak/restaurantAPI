@@ -41,7 +41,7 @@ app.get("/", (req, res) => {
 
 // Getting restaurant by page, PerPage & borough query
 app.get("/api/restaurants", (req, res) => {
-    if((!req.query.page || !req.query.perPage) || !req.query.borough) res.status(500).json({message: "Missing query parameters"})
+    if((!req.query.page || !req.query.perPage)) res.status(500).json({message: "Missing query parameters"})
     else {
         db.getAllRestaurants(req.query.page, req.query.perPage, req.query.borough)
         .then((data) => {
